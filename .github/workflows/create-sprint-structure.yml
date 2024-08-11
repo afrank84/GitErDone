@@ -41,6 +41,4 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
         git add .
         git commit -m "Add sprint structure for $SPRINT_NAME"
-        git push origin HEAD:${{ github.ref }}"
-
-
+        git push origin HEAD:${{ github.ref }}
