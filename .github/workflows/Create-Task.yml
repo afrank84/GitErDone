@@ -75,8 +75,14 @@ jobs:
         
         ## Acceptance Criteria
         - [ ] ${{ github.event.inputs.acceptance_criteria_1 }}
-        ${{ github.event.inputs.acceptance_criteria_2:+- [ ] ${{ github.event.inputs.acceptance_criteria_2 }} }
-        ${{ github.event.inputs.acceptance_criteria_3:+- [ ] ${{ github.event.inputs.acceptance_criteria_3 }} }
+
+        if [ -n "${{ github.event.inputs.acceptance_criteria_2 }}" ]; then
+          echo "- [ ] ${{ github.event.inputs.acceptance_criteria_2 }}" >> $FILENAME
+        fi
+
+        if [ -n "${{ github.event.inputs.acceptance_criteria_3 }}" ]; then
+          echo "- [ ] ${{ github.event.inputs.acceptance_criteria_3 }}" >> $FILENAME
+        fi
         
         ## Links
         - ${{ github.event.inputs.link_description }}
