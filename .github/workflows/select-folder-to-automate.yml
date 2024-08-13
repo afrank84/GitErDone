@@ -1,0 +1,31 @@
+name: Folder Selection Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      target-folder:
+        description: 'Select the folder to perform actions on'
+        required: true
+        default: 'src'
+        type: choice
+        options:
+          - src
+          - docs
+          - scripts
+          - examples
+
+jobs:
+  folder-action:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set selected folder as environment variable
+      run: echo "TARGET_FOLDER=${{ github.event.inputs['target-folder'] }}" >> $GITHUB_ENV
+
+    - name: List files in the selected folder
+      run: ls ${{ env.TARGET_FOLDER }}
+
+    # You can add more steps here that operate on the selected folder
