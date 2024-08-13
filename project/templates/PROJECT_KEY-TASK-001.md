@@ -1,8 +1,8 @@
 # PROJECT_KEY-TASK-001: Task_Title_Here
 
-Epic = Epic_Name_Here
-Sprint = Year-Month_Here
-Status = Task_Status_Here
+- Epic = Epic_Name_Here
+- Sprint = Year-Month_Here
+- Status = Task_Status_Here
 
 ## Description
 Brief_overview_of_the_task.
