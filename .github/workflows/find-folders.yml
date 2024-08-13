@@ -1,0 +1,23 @@
+name: List Folders
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list-folders:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: List top-level directories
+      run: |
+        find . -maxdepth 1 -type d -not -path '*/\.*' -not -name '.' | sed 's|^\./||' > folders.txt
+        cat folders.txt
+
+    - name: Upload folder list as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: folder-list
+        path: folders.txt
