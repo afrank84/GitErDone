@@ -1,31 +1,37 @@
-name: Folder Selection Workflow
+name: Choose Folder and Act
 
 on:
   workflow_dispatch:
     inputs:
       target-folder:
-        description: 'Select the folder to perform actions on'
+        description: 'Specify the folder name manually'
         required: true
-        default: 'src'
-        type: choice
-        options:
-          - src
-          - docs
-          - scripts
-          - examples
 
 jobs:
-  folder-action:
+  choose-folder:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set selected folder as environment variable
-      run: echo "TARGET_FOLDER=${{ github.event.inputs['target-folder'] }}" >> $GITHUB_ENV
+    - name: Download folder list artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: folder-list
 
-    - name: List files in the selected folder
-      run: ls ${{ env.TARGET_FOLDER }}
+    - name: Verify folder exists
+      run: |
+        if grep -Fxq "${{ github.event.inputs['target-folder'] }}" folders.txt; then
+          echo "Folder exists."
+        else
+          echo "Folder does not exist. Exiting."
+          exit 1
+        fi
 
-    # You can add more steps here that operate on the selected folder
+    - name: Act on selected folder
+      run: |
+        echo "Selected folder: ${{ github.event.inputs['target-folder'] }}"
+        ls ${{ github.event.inputs['target-folder'] }}
+
+    # Add additional steps to perform actions on the selected folder
