@@ -1,4 +1,4 @@
-# PROJECT_KEY-TASK-001: Task_Title_Here
+# PROJECT_KEY-001: Task_Title_Here
 
 - Epic = Epic_Name_Here
 - Sprint = Year-Month_Here
