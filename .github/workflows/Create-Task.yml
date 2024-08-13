@@ -64,26 +64,26 @@ jobs:
         FILENAME="project/Demo_Project-DP/backlog/🔵DP-${TASK_ID}-${SUMMARY_LENGTH// /_}.md"
 
         cat <<EOF > $FILENAME
-# DP-${TASK_ID}: ${{ github.event.inputs.task_title }}
-
-- Epic = ${{ github.event.inputs.epic_name }}
-- Sprint = ${{ github.event.inputs.sprint }}
-- Status = ${{ github.event.inputs.status }}
-
-## Description
-${{ github.event.inputs.summary_description }}
-
-## Acceptance Criteria
-- [ ] ${{ github.event.inputs.acceptance_criteria_1 }}
-${{ github.event.inputs.acceptance_criteria_2:+- [ ] ${{ github.event.inputs.acceptance_criteria_2 }} }
-${{ github.event.inputs.acceptance_criteria_3:+- [ ] ${{ github.event.inputs.acceptance_criteria_3 }} }
-
-## Links
-- ${{ github.event.inputs.link_description }}
-
-## Notes and Comments
-${{ github.event.inputs.notes_and_comments }}
-EOF
+        # DP-${TASK_ID}: ${{ github.event.inputs.task_title }}
+        
+        - Epic = ${{ github.event.inputs.epic_name }}
+        - Sprint = ${{ github.event.inputs.sprint }}
+        - Status = ${{ github.event.inputs.status }}
+        
+        ## Description
+        ${{ github.event.inputs.summary_description }}
+        
+        ## Acceptance Criteria
+        - [ ] ${{ github.event.inputs.acceptance_criteria_1 }}
+        ${{ github.event.inputs.acceptance_criteria_2:+- [ ] ${{ github.event.inputs.acceptance_criteria_2 }} }
+        ${{ github.event.inputs.acceptance_criteria_3:+- [ ] ${{ github.event.inputs.acceptance_criteria_3 }} }
+        
+        ## Links
+        - ${{ github.event.inputs.link_description }}
+        
+        ## Notes and Comments
+        ${{ github.event.inputs.notes_and_comments }}
+        EOF
 
     - name: Commit and Push
       run: |
