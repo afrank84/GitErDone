@@ -54,7 +54,7 @@ jobs:
 
     - name: Create Task Ticket
       run: |
-        SUMMARY_LENGTH=${{ github.event.inputs.summary_description }}  
+        SUMMARY_LENGTH=${{ github.event.inputs.summary_description }}
         if [ ${#SUMMARY_LENGTH} -gt 60 ]; then
           echo "Warning: The summary description exceeds 60 characters. Please shorten it."
           exit 1
